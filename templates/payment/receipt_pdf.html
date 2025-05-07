@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Receipt</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { padding: 20px; }
+        .header { text-align: center; }
+        .header h1 { color: #1E3A8A; }
+        .section { margin-top: 20px; }
+        .section p { margin: 4px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>UrbanDash</h1>
+            <p>Effortless Services, Anytime, Anywhere</p>
+            <hr>
+            <h2>Booking Receipt</h2>
+        </div>
+
+        <div class="section">
+            <p><strong>Customer Name:</strong> {{ payment.booking.customer.username }}</p>
+            <p><strong>Address:</strong> {{ payment.booking.customer.address }}</p>
+            <p><strong>Service Booked:</strong> {{ payment.booking.service.title }}</p>
+            <p><strong>Date:</strong> {{ payment.booking.date }}</p>
+            <p><strong>Time:</strong> {{ payment.booking.time }}</p>
+            <p><strong>Booking Fee:</strong> Ksh {{ payment.amount }}</p>
+            <p><strong>Transaction Code:</strong> {{ payment.transaction_code }}</p>
+            <p><strong>Status:</strong> {{ payment.status|capfirst }}</p>
+            <p><strong>Payment Date:</strong> {{ payment.paid_at|date:"F j, Y, g:i a" }}</p>
+        </div>
+    </div>
+</body>
+</html>

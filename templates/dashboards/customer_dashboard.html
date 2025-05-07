@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-xl font-semibold mb-4">Customer Dashboard</h2>
+<p class="mb-6">Welcome, {{ user.username }}! Browse available services below.</p>
+
+<!-- Search Form -->
+<form method="get" class="mb-4">
+    <input type="text" name="q" value="{{ query }}" placeholder="Search services..."
+           class="border px-3 py-2 rounded w-full" />
+</form>
+
+<!-- Service Listings -->
+<ul class="space-y-4">
+    {% for service in services %}
+    <li class="bg-white p-4 rounded shadow">
+        <h3 class="text-lg font-bold">{{ service.title }}</h3>
+        <p class="text-sm text-gray-600">{{ service.category }} — Ksh {{ service.booking_fee }}</p>
+        <p class="text-gray-700 mt-1">{{ service.description }}</p>
+
+        <!-- Book Now Link -->
+        <a href="{% url 'book_service' service.id %}" class="mt-2 inline-block bg-blue-500 text-white px-4 py-2 rounded">
+            Book Now
+        </a>
+    </li>
+    {% empty %}
+    <li>No services found.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

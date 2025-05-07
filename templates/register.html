@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - UrbanDash</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-6 rounded shadow-lg w-96">
+        <h2 class="text-xl font-bold mb-4">Register</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded mt-4">
+                Sign Up
+            </button>
+        </form>
+        <p class="mt-4 text-sm text-gray-600">Already have an account? 
+            <a href="{% url 'login' %}" class="text-blue-500">Login here</a>.
+        </p>
+    </div>
+</body>
+</html>

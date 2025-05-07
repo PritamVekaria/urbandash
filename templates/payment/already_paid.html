@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-xl font-semibold text-blue-600 mb-4">Payment Already Received</h2>
+<p>You’ve already paid for booking #{{ booking.id }}.</p>
+<a href="{% url 'customer_dashboard' %}" class="mt-4 inline-block text-blue-500 underline">Back to Dashboard</a>
+{% endblock %}

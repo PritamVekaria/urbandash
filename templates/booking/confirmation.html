@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-xl font-semibold text-green-600">Booking Confirmed!</h2>
+
+<p class="mt-2">
+    You’ve booked <strong>{{ booking.service.title }}</strong> on 
+    <strong>{{ booking.date }}</strong> at 
+    <strong>{{ booking.time }}</strong>.
+</p>
+
+<!-- Payment Instructions Box -->
+<div class="mt-6 p-4 bg-yellow-100 border border-yellow-300 rounded">
+    <p class="text-gray-800 mb-2">
+        Please pay <strong>Ksh {{ booking.service.booking_fee }}</strong> via Mpesa to complete your booking.
+    </p>
+    <p class="text-sm text-gray-600">
+        After making the payment, click the button below to enter your Mpesa transaction code and confirm your booking.
+    </p>
+
+    <a href="{% url 'make_payment' booking.id %}" 
+       class="mt-4 inline-block bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-2 rounded shadow">
+        Proceed to Payment
+    </a>
+</div>
+
+<!-- Optional back link -->
+<a href="{% url 'customer_dashboard' %}" 
+   class="mt-6 inline-block text-blue-500 underline block">
+    Back to Dashboard
+</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-xl font-semibold">Service Provider Dashboard</h2>
+<p class="mt-2 mb-4">Welcome, {{ user.username }}! You can manage your services here.</p>
+
+<a href="{% url 'add_service' %}" class="bg-green-500 text-white px-3 py-2 rounded">Add New Service</a>
+
+<h3 class="text-lg mt-6 font-semibold">Your Listed Services:</h3>
+<ul class="mt-2 space-y-2">
+  {% for service in services %}
+    <li class="bg-gray-100 p-3 rounded shadow-sm">
+      <strong>{{ service.title }}</strong> ({{ service.category }}) - Ksh {{ service.booking_fee }}
+      <p class="text-sm text-gray-700">{{ service.description }}</p>
+    </li>
+  {% empty %}
+    <li>No services listed yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

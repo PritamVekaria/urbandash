@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-xl font-bold mb-4">Book Service: {{ service.title }}</h2>
+<p class="mb-2 text-gray-600">{{ service.description }}</p>
+<p class="mb-4">Booking Fee: Ksh {{ service.booking_fee }}</p>
+
+<form method="post" class="space-y-4">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Confirm Booking</button>
+</form>
+{% endblock %}

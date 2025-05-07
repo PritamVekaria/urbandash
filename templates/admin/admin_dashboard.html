@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">UrbanDash Admin Dashboard</h2>
+
+<div class="grid grid-cols-2 gap-4 text-white">
+    <div class="bg-blue-600 p-4 rounded">Total Users: {{ total_users }}</div>
+    <div class="bg-green-600 p-4 rounded">Total Services: {{ total_services }}</div>
+    <div class="bg-yellow-500 p-4 rounded">Total Bookings: {{ total_bookings }}</div>
+    <div class="bg-indigo-700 p-4 rounded">Total Payments: Ksh {{ total_payments }}</div>
+</div>
+
+<h3 class="text-xl font-semibold mt-8 mb-2">Time-Based Booking Summary</h3>
+<ul class="list-disc ml-5">
+    <li><strong>Today:</strong> {{ daily_bookings }}</li>
+    <li><strong>This Week:</strong> {{ weekly_bookings }}</li>
+    <li><strong>This Month:</strong> {{ monthly_bookings }}</li>
+</ul>
+
+<h3 class="text-xl font-semibold mt-8 mb-2">Recent Bookings</h3>
+<table class="w-full text-sm">
+    <thead>
+        <tr class="bg-gray-200 text-left">
+            <th class="px-2 py-1">Customer</th>
+            <th class="px-2 py-1">Service</th>
+            <th class="px-2 py-1">Date</th>
+            <th class="px-2 py-1">Time</th>
+            <th class="px-2 py-1">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in recent_bookings %}
+        <tr class="border-b">
+            <td class="px-2 py-1">{{ booking.customer.username }}</td>
+            <td class="px-2 py-1">{{ booking.service.title }}</td>
+            <td class="px-2 py-1">{{ booking.date }}</td>
+            <td class="px-2 py-1">{{ booking.time }}</td>
+            <td class="px-2 py-1">{{ booking.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3 class="text-xl font-semibold mt-8 mb-2">Recent Payments</h3>
+<table class="w-full text-sm">
+    <thead>
+        <tr class="bg-gray-200 text-left">
+            <th class="px-2 py-1">Booking ID</th>
+            <th class="px-2 py-1">Amount</th>
+            <th class="px-2 py-1">Transaction Code</th>
+            <th class="px-2 py-1">Paid At</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pay in recent_payments %}
+        <tr class="border-b">
+            <td class="px-2 py-1">{{ pay.booking.id }}</td>
+            <td class="px-2 py-1">Ksh {{ pay.amount }}</td>
+            <td class="px-2 py-1">{{ pay.transaction_code }}</td>
+            <td class="px-2 py-1">{{ pay.paid_at|date:"F j, Y H:i" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
